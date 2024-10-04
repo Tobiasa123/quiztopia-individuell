@@ -35,7 +35,9 @@ exports.handler = async (event) => {
 
        return apiResponse(200, {token})
     } catch (error) {
+
       return apiResponse(500,{ message: "failed to register user", error: error.message })
+      
     }
   };
   

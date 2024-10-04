@@ -38,7 +38,6 @@ const quizHandler = async (event) => {
         return apiResponse(201, { message: `Quiz '${newQuiz.quizName}' added! quizId: '${newQuiz.quizId}' , userId: '${newQuiz.userId}'` }); 
 
     } catch (error) {
-        console.error('Error creating quiz:', error);
         return apiResponse(500, { message: "Error creating quiz" });
     }
 };

@@ -33,6 +33,8 @@ exports.handler = async (event) => {
         return apiResponse(200, {leaderboard})
 
     } catch (error) {
+
         return apiResponse(500, {message: 'error getting leaderboard', error: error.message})
+        
     }
 }

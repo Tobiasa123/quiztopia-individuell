@@ -23,7 +23,7 @@ exports.handler = async (event) => {
     } catch (error) {
 
       return apiResponse(500,{ message: "failed to fetch quizzes", error: error.message })
-
+      
     }
   };
   

@@ -70,7 +70,6 @@ const quizHandler = async (event) => {
         });
 
     } catch (error) {
-        console.error('Error adding questions:', error);
         return apiResponse(500, { message: "Error adding questions" });
     }
 };

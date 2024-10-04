@@ -34,7 +34,6 @@ const deleteHandler = async (event) => {
         return apiResponse(201, { message: `Quiz deleted! quizId: '${quizId}'` }); 
 
     } catch (error) {
-        console.error('Error deleting quiz:', error);
         return apiResponse(500, { message: "Error deleting quiz" });
     }
 };

@@ -53,7 +53,9 @@ const scoreHandler = async (event) => {
         return apiResponse(200, { message: `score submitted for quiz: '${quizId}'` });
         
     } catch (error) {
+
         return apiResponse(500, { message: "error submitting score", error: error.message});
+        
     }
 }
 const handler = middy(scoreHandler).use(validateToken);
