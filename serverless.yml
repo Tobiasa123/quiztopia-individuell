@@ -1,16 +1,109 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: tobiasa123
-# "service" is the name of this project. This will also be added to your AWS resource names.
+
+org: #org here
+
 service: quiztopia-individuell
 
 provider:
   name: aws
   runtime: nodejs20.x
+  region: eu-north-1
+  environment:
+    JWT_SECRET: 'supersecret'
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource: "*"
 
 functions:
-  hello:
-    handler: handler.hello
+  GetAllQuizzes:
+    handler: functions/getAllQuizzes/index.handler
     events:
       - httpApi:
-          path: /
+          path: /quiz
           method: get
+  AddQuiz:
+    handler: functions/addQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz
+          method: post
+  AddQuestion:
+    handler: functions/addQuestions/index.handler
+    events:
+      - httpApi:
+          path: /quiz/question
+          method: post
+  GetQuiz:
+    handler: functions/getQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz/{quizId}
+          method: get
+  DeleteQuiz:
+    handler: functions/deleteQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz/{quizId}
+          method: delete
+  Signup:
+    handler: functions/signup/index.handler
+    events:
+      - httpApi:
+          path: /auth/signup
+          method: post
+  Login:
+    handler: functions/login/index.handler
+    events:
+      - httpApi:
+          path: /auth/login
+          method: post
+  RegisterScore:
+    handler: functions/registerPoints/index.handler
+    events:
+      - httpApi:
+          path: /quiz/score
+          method: post
+  GetLeaderboard:
+    handler: functions/getLeaderboard/index.handler
+    events:
+      - httpApi:
+          path: /quiz/leaderboard
+          method: get
+
+resources:
+  Resources:
+    QuizUserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: quiz_user_table
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    QuizTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: quiz_table
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: quizId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+          - AttributeName: quizId
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
