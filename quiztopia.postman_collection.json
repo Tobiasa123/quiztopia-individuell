@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "8f9285fb-c404-4778-924b-16361633bcec",
+		"name": "quiztopia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31383266"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"emailhere\",\n    \"username\" : \"usernamehere\",\n    \"password\": \"passwordhere\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fpxukm5dfi.execute-api.eu-north-1.amazonaws.com/auth/signup",
+					"protocol": "https",
+					"host": [
+						"fpxukm5dfi",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"emailhere\",\n    \"password\": \"passwordhere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fpxukm5dfi.execute-api.eu-north-1.amazonaws.com/auth/login",
+					"protocol": "https",
+					"host": [
+						"fpxukm5dfi",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createQuiz",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"quizName\" : \"quiznamehere\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fpxukm5dfi.execute-api.eu-north-1.amazonaws.com/quiz",
+					"protocol": "https",
+					"host": [
+						"fpxukm5dfi",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletequiz",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fpxukm5dfi.execute-api.eu-north-1.amazonaws.com/quiz/{quizIdhere}",
+					"protocol": "https",
+					"host": [
+						"fpxukm5dfi",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"{quizIdhere}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addQuestions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"quizId\": \"quizIdhere\",\n    \"questions\" : [\n        {\n            \"question\": \"questionhere\",\n            \"answer\": \"answerhere\",\n            \"longitude\": \"longitudehere\",\n            \"latitude\": \"latitudehere\"\n        },\n        {\n            \"question\": \"questionhere\",\n            \"answer\": \"answerhere\",\n            \"longitude\": \"longitudehere\",\n            \"latitude\": \"latitudehere\"\n        }\n        ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fpxukm5dfi.execute-api.eu-north-1.amazonaws.com/quiz/question",
+					"protocol": "https",
+					"host": [
+						"fpxukm5dfi",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuizzes",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "getQuiz",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"quizUserId\" : \"userId of the quiz you want\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fpxukm5dfi.execute-api.eu-north-1.amazonaws.com/quiz/{quizIdhere}",
+					"protocol": "https",
+					"host": [
+						"fpxukm5dfi",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"{quizIdhere}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registerScore",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"quizUserId\": \"userId of the quiz you want\",\n    \"quizId\": \"quizId of the quiz you want\",\n    \"score\": \"score here, this should be a number not a string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fpxukm5dfi.execute-api.eu-north-1.amazonaws.com/quiz/score",
+					"protocol": "https",
+					"host": [
+						"fpxukm5dfi",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"score"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLeaderboard",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"quizUserId\": \"userId of the creator of the quiz you want the leaderboard for\",\n    \"quizId\": \"quizId of the quiz you want the leaderboard for\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fpxukm5dfi.execute-api.eu-north-1.amazonaws.com/quiz/leaderboard",
+					"protocol": "https",
+					"host": [
+						"fpxukm5dfi",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"leaderboard"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
